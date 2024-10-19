@@ -1,5 +1,4 @@
-import { add } from "./Data/datam.js"; 
-add();     
+
 
 
 

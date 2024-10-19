@@ -1,8 +1,9 @@
 const Root_div=document.getElementById("root");
+export{Root_div}
 
 //use when you want to render pieces when game start
 function pieceRender(data){
-    console.log(data);
+    
     data.forEach(row => {
         row.forEach(square => {
             if(square.piece){            //if square has piece
@@ -14,10 +15,6 @@ function pieceRender(data){
 
              //inser to square
              squareEl.appendChild(piece);
-            
-
-             
-              
             }
             
         });
@@ -30,7 +27,7 @@ function pieceRender(data){
 
 import *as pieces from "../Data/pices.js";
 
-/*=================render init (calls when games start only for one time)***************/
+/*=================render init (use when board render for first time)***************/
 
 function initGameRender(data){
 
@@ -77,19 +74,19 @@ function initGameRender(data){
      
      }   
      if(square.id=="b1"||square.id=="g1") {
-        square.piece=pieces.whiteKnight(square.id);           //7th row for black pawn
+        square.piece=pieces.whiteKnight(square.id);           
      
      }   
      if(square.id=="a1"||square.id=="h1") {
-        square.piece=pieces.whiteRook(square.id);           //7th row for black pawn
+        square.piece=pieces.whiteRook(square.id);           
      
      }   
      if(square.id=="d1") {
-        square.piece=pieces.whiteQueen(square.id);           //7th row for black pawn
+        square.piece=pieces.whiteQueen(square.id);           
      
      }   
      if(square.id=="e1") {
-        square.piece=pieces.whiteKing(square.id);           //7th row for black pawn
+        square.piece=pieces.whiteKing(square.id);
      
      } 
       

@@ -29,4 +29,5 @@ background-color: #302e2b;
 }
 .piece{
     width: 100%;
+    cursor: pointer;
 }

@@ -72,7 +72,26 @@ function initGameRender(data){
       if(square.id[1]==2) {
         square.piece= pieces.whitePawn(square.id);          //2nd row for white pawn a7 b7 .....
       }
-      
+      if(square.id=="c1"||square.id=="f1") {
+        square.piece=pieces.whiteBishop(square.id);           
+     
+     }   
+     if(square.id=="b1"||square.id=="g1") {
+        square.piece=pieces.whiteKnight(square.id);           //7th row for black pawn
+     
+     }   
+     if(square.id=="a1"||square.id=="h1") {
+        square.piece=pieces.whiteRook(square.id);           //7th row for black pawn
+     
+     }   
+     if(square.id=="d1") {
+        square.piece=pieces.whiteQueen(square.id);           //7th row for black pawn
+     
+     }   
+     if(square.id=="e1") {
+        square.piece=pieces.whiteKing(square.id);           //7th row for black pawn
+     
+     } 
       
 rowE1.appendChild(squareDiv);
 });

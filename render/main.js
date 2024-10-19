@@ -27,8 +27,9 @@ function pieceRender(data){
 }
 
 //=========importing black,white pawn=============
-import { blackPawn } from "../Data/pices.js";
-import { whitePawn } from "../Data/pices.js";
+
+import *as pieces from "../Data/pices.js";
+
 /*=================render init (calls when games start only for one time)***************/
 
 function initGameRender(data){
@@ -40,11 +41,11 @@ function initGameRender(data){
       squareDiv.classList.add(square.color,"square");
       squareDiv.id=square.id;                            //id passed to each square
       if(square.id[1]==7) {
-         square.piece=blackPawn(square.id);           //7th row for black pawn
+         square.piece=pieces.blackPawn(square.id);           //7th row for black pawn
       
       }   
       if(square.id[1]==2) {
-        square.piece= whitePawn(square.id);          //2nd row for white pawn
+        square.piece= pieces.whitePawn(square.id);          //2nd row for white pawn
       }   
                                                  //a7 b7 .......
                                                  

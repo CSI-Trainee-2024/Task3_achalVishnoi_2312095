@@ -23,6 +23,14 @@ function pieceRender(data){
     
 }
 
+
+function renderHighlight(squareId){
+   const highlightSpan=document.createElement("span");
+   highlightSpan.classList.add("hilight");
+   document.getElementById(squareId).appendChild(highlightSpan);
+
+}
+
 //=========importing black,white pawn=============
 
 import *as pieces from "../Data/pices.js";
@@ -100,7 +108,7 @@ rowE1.appendChild(squareDiv);
   });
    pieceRender(data);
 }
-export {initGameRender};
+export {initGameRender,renderHighlight};
 
 
 

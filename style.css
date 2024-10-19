@@ -20,7 +20,7 @@ background-color: #302e2b;
    
 }
 .white{
-    background-image: url(ChessAssets/lightwooden.png);
+    background: url(ChessAssets/lightwooden.png);
 }
 .square{
     width: 75px;
@@ -30,4 +30,16 @@ background-color: #302e2b;
 .piece{
     width: 100%;
     cursor: pointer;
+}
+.hilight{
+    width: 32px;
+    display: block;
+    height: 32px;
+    border-radius: 50%;
+    margin: 21.5px;
+    
+    
+    
+    background-color: rgba(0,0,0,0.17);
+    
 }

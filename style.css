@@ -16,10 +16,11 @@ background-color: #302e2b;
     
 }
 .black{
-   background-color: #397a8c; 
+   background: url(ChessAssets/darkwooden.png); 
+   
 }
 .white{
-        background-color: #ebecd0;
+    background-image: url(ChessAssets/lightwooden.png);
 }
 .square{
     width: 75px;

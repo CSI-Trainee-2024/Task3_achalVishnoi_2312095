@@ -1,7 +1,30 @@
 const Root_div=document.getElementById("root");
 
 //use when you want to render pieces when game start
-function pieceRender(data){}
+function pieceRender(data){
+    console.log(data);
+    data.forEach(row => {
+        row.forEach(square => {
+            if(square.piece){            //if square has piece
+             const squareEl =document.getElementById(square.id);
+             //create piece
+             const piece =document.createElement("img");
+             piece.src=square.piece.img;
+             piece.classList.add("piece");
+
+             //inser to square
+             squareEl.appendChild(piece);
+            
+
+             
+              
+            }
+            
+        });
+        
+    });
+    
+}
 
 //=========importing black,white pawn=============
 import { blackPawn } from "../Data/pices.js";
@@ -15,15 +38,17 @@ function initGameRender(data){
     element.forEach(square => {                         //squareRow(8),squareRow (7)
       const squareDiv =document.createElement("div");
       squareDiv.classList.add(square.color,"square");
+      squareDiv.id=square.id;                            //id passed to each square
       if(square.id[1]==7) {
          square.piece=blackPawn(square.id);           //7th row for black pawn
-         console.log(square.piece);
+      
       }   
       if(square.id[1]==2) {
         square.piece= whitePawn(square.id);          //2nd row for white pawn
-        console.log(square.piece);
-      }                                            //a7 b7 .......
-      rowE1.appendChild(squareDiv);
+      }   
+                                                 //a7 b7 .......
+                                                 
+rowE1.appendChild(squareDiv);
 });
      
      rowE1.classList.add("squareRow")
@@ -31,8 +56,7 @@ function initGameRender(data){
     
     
   });
-
-pieceRender(data);
+   pieceRender(data);
 }
 export {initGameRender};
 

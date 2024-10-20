@@ -13,20 +13,19 @@ let highlight_state=false;
 let SelfHighlightedState=null;
 //move State
 let moveState=null;
-
+//**********white pown events************ 
 function whitePownClick({piece}){
 
-
+//if double clicked to self highlighted state
    if(SelfHighlightedState==piece){
      clearPreviousSelfHightlight(SelfHighlightedState);
      clearHighlight();
      SelfHighlightedState=null;
      return;
+     
    }
 
-   //console.log(moveState);
-   
-   clearPreviousSelfHightlight(SelfHighlightedState);
+    clearPreviousSelfHightlight(SelfHighlightedState)
    selfHighlight(piece);
    SelfHighlightedState=piece;
    //add piece as move state
@@ -110,9 +109,105 @@ function whitePownClick({piece}){
     
 
     
-
+   
     
  }
+ 
+ //****************blackPown move***********
+ function blackPownClick({piece}){
+   
+   
+
+   //if double clicked to self highlighted state
+      if(SelfHighlightedState==piece){
+        clearPreviousSelfHightlight(SelfHighlightedState);
+        clearHighlight();
+        SelfHighlightedState=null;
+        return;
+        
+      }
+   
+       clearPreviousSelfHightlight(SelfHighlightedState)
+      selfHighlight(piece);
+      SelfHighlightedState=piece;
+      //add piece as move state
+      moveState=piece;
+   
+      //highlight clicked element 
+      const current_pos=piece.current_Position;
+      
+       
+       const flatArray=globalstate.flat();
+       if(current_pos[1]=="7"){
+   
+           const highLightSquareIds=
+           [
+      `${current_pos[0]}${Number(current_pos[1])-1}`,
+      `${current_pos[0]}${Number(current_pos[1])-2}`
+           ]
+   
+           clearHighlight();
+           highLightSquareIds.forEach(highlight => {
+               
+              globalstate.forEach(row => {
+               row.forEach((element)=>{
+                  if(element.id==highlight){
+               
+               element.highlight(true);
+               
+               
+              }
+   
+               
+   
+                });
+               }); 
+               
+               // if(highlight_state)  clearHighlight(); 
+               //     renderHighlight(highlight);
+               // highlight_state=true;  
+   
+            //   const el=flatArray.find((element)=>element.id===highlight);
+           //    console.log(el);
+               
+               
+           });
+         }
+         else{
+            const highLightSquareIds=
+            [
+           `${current_pos[0]}${Number(current_pos[1])-1}`
+            ]
+    
+            clearHighlight();
+            highLightSquareIds.forEach(highlight => {
+                
+               globalstate.forEach(row => {
+                row.forEach((element)=>{
+                   if(element.id==highlight){
+                
+                element.highlight(true);
+                
+                
+               }
+    
+                
+    
+                 });
+                }); 
+                
+
+                
+            });
+         }
+           
+   
+       
+   
+       
+      
+       
+    }
   
   
   
@@ -125,6 +220,11 @@ function GlobalEvent(){
              if(square.piece.piece_name=="white_Pown"){
                 whitePownClick(square);
              }
+             else if(square.piece.piece_name =="black_Pown"){
+               
+               
+               blackPownClick(square);                                
+             } 
 
             
         }
@@ -141,20 +241,23 @@ function GlobalEvent(){
              moveElement(moveState,id);
              
              moveState=null;
-           }
-           else{
+              }
+              else{
             
-            const id=event.target.id;
-             moveElement(moveState,id);
-             
-             moveState=null;
+             const id=event.target.id;
+              moveElement(moveState,id);
+              moveState=null;
 
-           }
+             }
+           clearHighlight(); //in elese part clear highlight called to clear highlight if any if we clicking any part
+           clearPreviousSelfHightlight(SelfHighlightedState);
+           SelfHighlightedState=null;
             
          }
          else {
             clearHighlight(); //in elese part clear highlight called to clear highlight if any if we clicking any part
             clearPreviousSelfHightlight(SelfHighlightedState);
+            SelfHighlightedState=null;
          }
          
          

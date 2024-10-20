@@ -3,7 +3,7 @@ function blackPawn(current_Position){
       return{
         current_Position,
         img: "chessAssets/black/PawnB.png",
-      piece_name: "black_Pawn"
+      piece_name: "black_Pown"
       }
 }
 function blackRook(current_Position){

@@ -2,15 +2,20 @@ import { Root_div } from "../render/main.js";
 import { globalstate } from "../index.js";
 import { renderHighlight } from "../render/main.js";
 import { clearHighlight } from "../render/main.js";
+import { selfHighlight } from "../render/main.js";
 
 
 //highleted or not
 let highlight_state=false;
 
  function whitePownClick({piece}){
-    const current_pos=piece.current_Position;
+   //highlight clicked element 
+   const current_pos=piece.current_Position;
+   selfHighlight(piece);
+    
     const flatArray=globalstate.flat();
     if(current_pos[1]=="2"){
+
         const highLightSquareIds=
         [
    `${current_pos[0]}${Number(current_pos[1])+1}`,
@@ -22,7 +27,7 @@ let highlight_state=false;
             
            globalstate.forEach(row => {
             row.forEach((element)=>{
-           if(element.id==highlight){
+               if(element.id==highlight){
             
             element.highlight(true);
             

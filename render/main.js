@@ -39,6 +39,7 @@ function clearHighlight(){
  flatData.forEach(el=>{
    if(el.highlighted){
       document.getElementById(el.id).innerHTML="";
+      el.highlighted=false;
    }
    
    
@@ -125,7 +126,12 @@ rowE1.appendChild(squareDiv);
   });
    pieceRender(data);
 }
-export {initGameRender,renderHighlight,clearHighlight};
+
+//-----------------self highlight ---------------//
+function selfHighlight(piece){
+   document.getElementById(piece.current_Position).classList.add("highlightYellow");  
+}
+export {initGameRender,renderHighlight,clearHighlight,selfHighlight};
 
 
 

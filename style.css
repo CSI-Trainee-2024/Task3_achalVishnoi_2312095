@@ -43,3 +43,7 @@ background-color: #302e2b;
     background-color: rgba(0,0,0,0.17);
     
 }
+/*highlight color*/
+.highlightYellow{
+    background: #f7f769;
+}

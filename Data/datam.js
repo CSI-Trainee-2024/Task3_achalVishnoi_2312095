@@ -1,6 +1,3 @@
-export function add(){
-    alert("hello")
-}
 
 import { renderHighlight } from "../render/main.js";
 //for each square
@@ -16,36 +13,26 @@ function Square(color,id,piece){
 function  SquareRow(rowId){
 
 
-     const squareRow=[];
-     const abc=['a','b','c','d','e','f','g','h'];
-
-    if(rowId%2==0){
-        abc.forEach((element,index) => { 
-                                //if we want to crack both index and element
-           if(index%2==0){
-                squareRow.push(Square("white",element+rowId,null));
-            }
-            else{
-                squareRow.push(Square("black",element+rowId,null));
-            }
-            })
-            }
-     else{
-        
-        abc.forEach((element,index) => {                    //if we want to crack both index and element
-            if(index%2==0){
-                squareRow.push(Square("black",element+rowId,null));
-            }
-            else{
-                squareRow.push(Square("white",element+rowId,null));
-            }
-            
-        })
-           
-
-        }
-           return squareRow;
-}
+    if (rowId % 2 == 0) {
+        abcd.forEach((element, index) => {
+          if (index % 2 == 0) {
+            squareRow.push(Square("white", element + rowId, null));
+          } else {
+            squareRow.push(Square("black", element + rowId, null));
+          }
+        });
+      } else {
+        abcd.forEach((element, index) => {
+          if (index % 2 == 0) {
+            squareRow.push(Square("black", element + rowId, null));
+          } else {
+            squareRow.push(Square("white", element + rowId, null));
+          }
+        });
+      }
+    
+      return squareRow;
+    }
 
 function initGame(){
 

@@ -1,94 +1,106 @@
  // black pieces
-function blackPawn(current_Position){
-      return{
-        current_Position,
-        img: "chessAssets/black/PawnB.png",
-      piece_name: "black_Pown"
-      }
+ function blackPawn(current_position) {
+  return {
+    current_position,
+    img: "Assets/images/pieces/black/pawn.png",
+    piece_name: "BLACK_PAWN",
+  };
 }
-function blackRook(current_Position){
-    return{
-      current_Position,
-      img: "chessAssets/black/RookB.png",
-      piece_name: "black_Rook"
-    }
+function blackBishop(current_position) {
+  return {
+    current_position,
+    img: "Assets/images/pieces/black/bishop.png",
+    piece_name: "BLACK_BISHOP",
+  };
 }
-function blackBishop(current_Position){
-    return{
-      current_Position,
-      img: "chessAssets/black/BishopB.png",
-      piece_name: "black_Bishop"
-    }
+function blackKnight(current_position) {
+  return {
+    current_position,
+    img: "Assets/images/pieces/black/knight.png",
+    piece_name: "BLACK_KNIGHT",
+  };
 }
-function blackKnight(current_Position){
-    return{
-      current_Position,
-      img: "chessAssets/black/KnightB.png",
-      piece_name: "black_King"
-    }
+function blackKing(current_position) {
+  return {
+    move: false,
+    current_position,
+    img: "Assets/images/pieces/black/king.png",
+    piece_name: "BLACK_KING",
+  };
 }
-function blackKing(current_Position){
-    return{
-      current_Position,
-      img: "chessAssets/black/KingB.png",
-      piece_name: "black_King"
-    }
+function blackQueen(current_position) {
+  return {
+    current_position,
+    img: "Assets/images/pieces/black/queen.png",
+    piece_name: "BLACK_QUEEN",
+  };
 }
-function blackQueen(current_Position){
-    return{
-      current_Position,
-      img: "chessAssets/black/QueenB.png"
-      ,
-      piece_name: "black_Queen"
-    }
-}
-
-
-
-//white pieces 
-function whitePawn(current_Position){
-    return{
-      current_Position,
-      img: "chessAssets/white/PawnW.png",
-      piece_name: "white_Pown"
-    }
+function blackRook(current_position) {
+  return {
+    move: false,
+    current_position,
+    img: "Assets/images/pieces/black/rook.png",
+    piece_name: "BLACK_ROOK",
+  };
 }
 
-function whiteRook(current_Position){
-    return{
-      current_Position,
-      img: "chessAssets/white/RookW.png",
-      piece_name: "white_Rook"
-    }
+// white pieces
+function whitePawn(current_position) {
+  return {
+    current_position,
+    img: "Assets/images/pieces/white/pawn.png",
+    piece_name: "WHITE_PAWN",
+  };
 }
-function whiteKnight(current_Position){
-    return{
-      current_Position,
-      img: "chessAssets/white/KnightW.png",
-      piece_name: "white_Kinght"
-    }
+function whiteRook(current_position) {
+  return {
+    move: false,
+    current_position,
+    img: "Assets/images/pieces/white/rook.png",
+    piece_name: "WHITE_ROOK",
+  };
 }
-function whiteBishop(current_Position){
-    return{
-      current_Position,
-      img: "chessAssets/white/BishopW.png",
-      piece_name: "white_Bishop"
-    }
+function whiteKnight(current_position) {
+  return {
+    current_position,
+    img: "Assets/images/pieces/white/knight.png",
+    piece_name: "WHITE_KNIGHT",
+  };
 }
-function whiteKing(current_Position){
-    return{
-      current_Position,
-      img: "chessAssets/white/KingW.png",
-      piece_name: "white_King"
-    }
+function whiteBishop(current_position) {
+  return {
+    current_position,
+    img: "Assets/images/pieces/white/bishop.png",
+    piece_name: "WHITE_BISHOP",
+  };
 }
-function whiteQueen(current_Position){
-    return{
-      current_Position,
-      img: "chessAssets/white/QueenW.png",
-      piece_name: "white_Queen"
-    }
+function whiteQueen(current_position) {
+  return {
+    current_position,
+    img: "Assets/images/pieces/white/queen.png",
+    piece_name: "WHITE_QUEEN",
+  };
+}
+function whiteKing(current_position) {
+  return {
+    move: false,
+    current_position,
+    img: "Assets/images/pieces/white/king.png",
+    piece_name: "WHITE_KING",
+  };
 }
 
-export{blackPawn,whitePawn,blackRook,whiteRook,blackBishop,whiteBishop,
-       blackKing,whiteKing,blackKnight,whiteKnight,blackQueen,whiteQueen }
+export {
+  blackPawn,
+  blackBishop,
+  blackKing,
+  blackQueen,
+  blackKnight,
+  blackRook,
+  whitePawn,
+  whiteBishop,
+  whiteKing,
+  whiteQueen,
+  whiteKnight,
+  whiteRook,
+};

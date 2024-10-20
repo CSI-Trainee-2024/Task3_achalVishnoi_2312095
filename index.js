@@ -4,9 +4,8 @@ import { GlobalEvent } from "./events/global.js";
 //============will be usefull till game ends================
 const globalstate=initGame();  
 initGameRender(globalstate);
-
-export {globalstate}
-
+let keySquareMapper = {};
 GlobalEvent();
+export { globalstate, keySquareMapper };
 
 

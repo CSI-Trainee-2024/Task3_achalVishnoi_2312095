@@ -1,9 +1,10 @@
 import { Root_div } from "../render/main.js";
-import { globalstate } from "../index.js";
+
 import { renderHighlight } from "../render/main.js";
 import { clearHighlight } from "../render/main.js";
 import { selfHighlight } from "../render/main.js";
 //import { clearPreviousSelfHightlight } from "../render/main.js";
+import { globalstate, keySquareMapper } from "../index.js";
 import { moveElement } from "../render/main.js";
 import { checkPieceOfOpponentOnElement } from "../Helper/commonHelper.js";
 import { globalStateRender } from "../render/main.js";
@@ -357,19 +358,22 @@ function GlobalEvent(){
     Root_div.addEventListener("click",function(event){
         if(event.target.localName==="img"){
             const clickId=event.target.parentNode.id;
-            const flatArray=globalstate.flat()
-             const square=flatArray.find((el)=>el.id===clickId);
-             if(square.piece.piece_name=="white_Pown"){
-                whitePownClick(square);
-             }
-             else if(square.piece.piece_name =="black_Pown"){
-               
-               
-               blackPownClick(square);                                
+            
+
+            const square = keySquareMapper[clickId];
+      
+            if (
+              (square.piece.piece_name.includes("white") && inTurn === "black") ||
+              (square.piece.piece_name.includes("black") && inTurn === "white")
+            ) {
+              captureInTurn(square);
+              return;
+            }
+            if (square.piece.piece_name == "white_") {
+               if (inTurn == "white_Pown") whitePawnClick(square);
              } 
 
-            
-        }
+         }
         else{
          SelfHighlightedState=null;
          const childElementOfClockedEl=Array.from(event.target.childNodes);
@@ -378,8 +382,10 @@ function GlobalEvent(){
            if(event.target.localName=="span"){
             
              const id=event.target.parentNode.id;
+            
 
-                                    
+
+            
 
              moveElement(moveState,id);
              

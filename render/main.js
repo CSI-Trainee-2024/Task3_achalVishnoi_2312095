@@ -3,6 +3,9 @@ export{Root_div}
 import { globalstate } from "../index.js";
 
 
+
+
+
 //use when you want to render pieces when game start
 function pieceRender(data){
     
@@ -24,6 +27,7 @@ function pieceRender(data){
     });
     
 }
+
 
 
 function renderHighlight(squareId){
@@ -131,7 +135,13 @@ rowE1.appendChild(squareDiv);
 function selfHighlight(piece){
    document.getElementById(piece.current_Position).classList.add("highlightYellow");  
 }
-export {initGameRender,renderHighlight,clearHighlight,selfHighlight};
+
+function clearPreviousSelfHightlight(piece){
+   if(piece!=null){
+   document.getElementById(piece.current_Position).classList.remove("highlightYellow");
+   }
+}
+export {initGameRender,renderHighlight,clearHighlight,selfHighlight,clearPreviousSelfHightlight};
 
 
 

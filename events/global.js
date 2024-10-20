@@ -5,7 +5,7 @@ import { clearHighlight } from "../render/main.js";
 import { selfHighlight } from "../render/main.js";
 //import { clearPreviousSelfHightlight } from "../render/main.js";
 import { globalstate, keySquareMapper } from "../index.js";
-import { moveElement } from "../render/main.js";
+//import { moveElement } from "../render/main.js";
 import { checkPieceOfOpponentOnElement } from "../Helper/commonHelper.js";
 import { globalStateRender } from "../render/main.js";
 //highleted or not

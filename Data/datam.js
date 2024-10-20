@@ -11,7 +11,9 @@ function Square(color,id,piece){
 
 //***********************for distributing ids and color*************************//
 function  SquareRow(rowId){
-
+    const squareRow = [];
+    const abcd = ["a", "b", "c", "d", "e", "f", "g", "h"];
+  
 
     if (rowId % 2 == 0) {
         abcd.forEach((element, index) => {

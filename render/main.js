@@ -3,6 +3,7 @@ export{Root_div}
 import { globalstate } from "../index.js";
 import { movePieceFromXToY } from "../events/global.js";
 
+
 //global state reanderer (this function is useful to render piece fromglobal state)
 //most important function
 function globalStateRender() {
@@ -10,43 +11,20 @@ function globalStateRender() {
    
    globalstate.forEach((row) => {
      row.forEach((element) => {
-       if (element.highlight) {
-          const highlightSpan=document.createElement("span");
-            highlightSpan.classList.add("highlight");
-             document.getElementById(element.id).appendChild(highlightSpan);
-   
+         
+      if (element.highlight) {
+         const hightlightSpan = document.createElement("span");
+         hightlightSpan.classList.add("highlight");
+         document.getElementById(element.id).appendChild(hightlightSpan);
          // } else if (element.highlight === null) {
-       }
-       
-       else if(element.highlight===null) {
+       } else {
          const el = document.getElementById(element.id);
          const highlights = Array.from(el.getElementsByTagName("span"));
          highlights.forEach((element) => {
            el.removeChild(element);
          });
          // document.getElementById(element.id).innerHTML = "";
-          }
-          if(element.piece!=null){
-            const square=element;
-            const squareEl =document.getElementById(square.id);
-             //create piece
-             squareEl.innerHTML="";
-             const piece =document.createElement("img");
-             piece.src=square.piece.img;
-             piece.classList.add("piece");
-
-             //inser to square
-             squareEl.appendChild(piece);
-              } 
-              else{
-               const el = document.getElementById(element.id);
-         const piece = Array.from(el.getElementsByClassName("piece"));
-         piece.forEach((element) => {
-           el.removeChild(element);
-               });
-
-            }  
-            
+       } 
  
      });
    });
@@ -94,13 +72,13 @@ function clearHighlight(){
  const flatData=globalstate.flat();
  flatData.forEach(el=>{
    
-   // if(el.captureHighlight){
+    if(el.captureHighlight){
       
-   //    document.getElementById(el.id).classList.remove("captureColor");
-   //    el.captureHighlight=false;
+      document.getElementById(el.id).classList.remove("captureColor");
+       el.captureHighlight=false;
             
       
-   // }
+    }
    
    if(el.highlight){
     el.highlight=null;
@@ -115,82 +93,121 @@ function clearHighlight(){
 
 //=========importing black,white pawn=============
 
-import *as pieces from "../Data/pices.js";
+import * as piece from "../Data/pieces.js";
  
 
 /*=================render init (use when board render for first time)***************/
 
-function initGameRender(data){
+function initGameRender(data) {
 
-  data.forEach(element => {                           //initGame
-    const rowE1=document.createElement("div");
-    element.forEach(square => {                         //squareRow(8),squareRow (7)
-      const squareDiv =document.createElement("div");
-      squareDiv.classList.add(square.color,"square");
-      squareDiv.id=square.id;                            //id passed to each square
 
-   /*filling black pieces*/   
-      if(square.id[1]==7) {
-         square.piece=pieces.blackPawn(square.id);           //7th row for black pawn
-      
-      }   
-      if(square.id=="c8"||square.id=="f8") {
-         square.piece=pieces.blackBishop(square.id);           //7th row for black pawn
-      
-      }   
-      if(square.id=="b8"||square.id=="g8") {
-         square.piece=pieces.blackKnight(square.id);           //7th row for black pawn
-      
-      }   
-      if(square.id=="a8"||square.id=="h8") {
-         square.piece=pieces.blackRook(square.id);           //7th row for black pawn
-      
-      }   
-      if(square.id=="d8") {
-         square.piece=pieces.blackQueen(square.id);           //7th row for black pawn
-      
-      }   
-      if(square.id=="e8") {
-         square.piece=pieces.blackKing(square.id);           //7th row for black pawn
-      
-      }   
-      
-      //filling white pices//
-
-      if(square.id[1]==2) {
-        square.piece= pieces.whitePawn(square.id);          //2nd row for white pawn a7 b7 .....
-      }
-      if(square.id=="c1"||square.id=="f1") {
-        square.piece=pieces.whiteBishop(square.id);           
-     
-     }   
-     if(square.id=="b1"||square.id=="g1") {
-        square.piece=pieces.whiteKnight(square.id);           
-     
-     }   
-     if(square.id=="a1"||square.id=="h1") {
-        square.piece=pieces.whiteRook(square.id);           
-     
-     }   
-     if(square.id=="d1") {
-        square.piece=pieces.whiteQueen(square.id);           
-     
-     }   
-     if(square.id=="e1") {
-        square.piece=pieces.whiteKing(square.id);
-     
-     } 
-      
-rowE1.appendChild(squareDiv);
-});
-     
-     rowE1.classList.add("squareRow")
-     Root_div.appendChild(rowE1)
-    
-    
-  });
+   data.forEach((element) => {
+     const rowEl = document.createElement("div");
+     element.forEach((square) => {
+       const squareDiv = document.createElement("div");
+       squareDiv.id = square.id;
+       squareDiv.classList.add(square.color, "square");
+       
+       // render blackpawn
+       if (square.id[1] == 7) {
+         square.piece = piece.blackPawn(square.id);
+         globalPiece.black_pawn = square.piece
+       }
+ 
+       // render black rook
+       if (square.id == "h8" || square.id == "a8") {
+         square.piece = piece.blackRook(square.id);
+         if(globalPiece.black_rook_1) {
+           globalPiece.black_rook_2 = square.piece
+         } else {
+           globalPiece.black_rook_1 = square.piece
+         }
+       }
+ 
+       // render black knight
+       if (square.id == "b8" || square.id == "g8") {
+         square.piece = piece.blackKnight(square.id);
+         if(globalPiece.black_knight_1) {
+           globalPiece.black_knight_2 = square.piece
+         } else {
+           globalPiece.black_knight_1 = square.piece
+         }
+       }
+       // render black knight
+       if (square.id == "c8" || square.id == "f8") {
+         square.piece = piece.blackBishop(square.id);
+         if(globalPiece.black_bishop_1) {
+           globalPiece.black_bishop_2 = square.piece
+         } else {
+           globalPiece.black_bishop_1 = square.piece
+         }
+       }
+       // render black knight
+       if (square.id == "d8") {
+         square.piece = piece.blackQueen(square.id);
+         globalPiece.black_queen = square.piece
+       }
+       // render black knight
+       if (square.id == "e8") {
+         square.piece = piece.blackKing(square.id);
+         globalPiece.black_king = square.piece;
+       }
+ 
+       // render white pawn
+       if (square.id[1] == 2) {
+         square.piece = piece.whitePawn(square.id);
+         globalPiece.white_pawn = square.piece
+       }
+       // render white queen
+       if (square.id == "d1") {
+         square.piece = piece.whiteQueen(square.id);
+         globalPiece.white_queen = square.piece
+       }
+ 
+       // render white king
+       if (square.id == "e1") {
+         square.piece = piece.whiteKing(square.id);
+         globalPiece.white_king = square.piece;
+       }
+ 
+       // render white rook
+       if (square.id == "h1" || square.id == "a1") {
+         square.piece = piece.whiteRook(square.id);
+         if(globalPiece.white_rook_1) {
+           globalPiece.white_rook_2 = square.piece
+         } else {
+           globalPiece.white_rook_1 = square.piece
+         }
+       }
+ 
+       // render black knight
+       if (square.id == "b1" || square.id == "g1") {
+         square.piece = piece.whiteKnight(square.id);
+         if(globalPiece.white_knight_1) {
+           globalPiece.white_knight_2 = square.piece
+         } else {
+           globalPiece.white_knight_1 = square.piece
+         }
+       }
+ 
+       // render black bishop
+       if (square.id == "c1" || square.id == "f1") {
+         square.piece = piece.whiteBishop(square.id);
+         if(globalPiece.white_bishop_1) {
+           globalPiece.white_bishop_2 = square.piece
+         } else {
+           globalPiece.white_bishop_1 = square.piece
+         }
+       }
+ 
+       rowEl.appendChild(squareDiv);
+     });
+     rowEl.classList.add("squareRow");
+     ROOT_DIV.appendChild(rowEl);
+   });
+ 
    pieceRender(data);
-}
+ }
 
 //-----------------self highlight ---------------//
 function selfHighlight(piece){
@@ -201,7 +218,7 @@ function selfHighlight(piece){
 
 
 //move element to square
-function moveElement(piece,id){
+/*function moveElement(piece,id){
    
     const flatData=globalstate.flat();
    // const to=flatData.find(el=>{
@@ -233,14 +250,14 @@ function moveElement(piece,id){
   
    
    
-}
+}*/
 export {
    initGameRender,
    renderHighlight,
    clearHighlight,
    selfHighlight,
   
-   moveElement,
+   
    globalStateRender
 };
 

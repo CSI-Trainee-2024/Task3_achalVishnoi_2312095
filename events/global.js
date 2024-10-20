@@ -18,7 +18,7 @@ function whitePownClick({piece}){
 
 
    if(SelfHighlightedState==piece){
-     clearPreviousSelfHightlight(piece);
+     clearPreviousSelfHightlight(SelfHighlightedState);
      clearHighlight();
      SelfHighlightedState=null;
      return;
@@ -71,6 +71,39 @@ function whitePownClick({piece}){
             
             
         });
+      }
+      else{
+         const highLightSquareIds=
+         [
+    `${current_pos[0]}${Number(current_pos[1])+1}`,
+         ]
+ 
+         clearHighlight();
+         highLightSquareIds.forEach(highlight => {
+             
+            globalstate.forEach(row => {
+             row.forEach((element)=>{
+                if(element.id==highlight){
+             
+             element.highlight(true);
+             
+             
+            }
+ 
+             
+ 
+              });
+             }); 
+             
+             // if(highlight_state)  clearHighlight(); 
+             //     renderHighlight(highlight);
+             // highlight_state=true;  
+ 
+          //   const el=flatArray.find((element)=>element.id===highlight);
+         //    console.log(el);
+             
+             
+         });
       }
         
 

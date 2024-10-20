@@ -48,7 +48,7 @@ function clearHighlight(){
    
    
  })
- console.log(flatData);
+ //console.log(flatData);
  
 }
 

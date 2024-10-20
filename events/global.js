@@ -41,6 +41,8 @@ let SelfHighlightedState=null;
             
            }
 
+
+
              });
             }); 
             
@@ -56,6 +58,7 @@ let SelfHighlightedState=null;
         
 
     }
+
     
 
     
@@ -73,6 +76,19 @@ function GlobalEvent(){
              }
 
             
+        }
+        else{
+         const childElementOfClockedEl=Array.from(event.target.childNodes);
+         if(childElementOfClockedEl.length==1||event.target.localName=="span"){
+            console.log("clicked on highlighted span");
+            
+         }
+         else{
+            clearHighlight();
+            
+         }
+         
+
         }
         
     })

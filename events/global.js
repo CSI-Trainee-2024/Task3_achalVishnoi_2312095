@@ -88,11 +88,23 @@ function GlobalEvent(){
         else{
          const childElementOfClockedEl=Array.from(event.target.childNodes);
          if(childElementOfClockedEl.length==1||event.target.localName=="span"){
+            
            if(event.target.localName=="span"){
+            
              const id=event.target.parentNode.id;
+
+             clearHighlight();          //very importent              
+
              moveElement(moveState,id);
+             
+             moveState=null;
            }
            else{
+            clearHighlight();
+            const id=event.target.id;
+             moveElement(moveState,id);
+             
+             moveState=null;
 
            }
             

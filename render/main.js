@@ -1,6 +1,7 @@
 const Root_div=document.getElementById("root");
 export{Root_div}
 import { globalstate } from "../index.js";
+import { movePieceFromXToY } from "../events/global.js";
 
 //global state reanderer (this function is useful to render piece fromglobal state)
 //most important function
@@ -16,15 +17,37 @@ function globalStateRender() {
    
          // } else if (element.highlight === null) {
        }
-       else {
+       
+       else if(element.highlight===null) {
          const el = document.getElementById(element.id);
          const highlights = Array.from(el.getElementsByTagName("span"));
          highlights.forEach((element) => {
            el.removeChild(element);
          });
          // document.getElementById(element.id).innerHTML = "";
-       }
+          }
+          if(element.piece!=null){
+            const square=element;
+            const squareEl =document.getElementById(square.id);
+             //create piece
+             squareEl.innerHTML="";
+             const piece =document.createElement("img");
+             piece.src=square.piece.img;
+             piece.classList.add("piece");
 
+             //inser to square
+             squareEl.appendChild(piece);
+              } 
+              else{
+               const el = document.getElementById(element.id);
+         const piece = Array.from(el.getElementsByClassName("piece"));
+         piece.forEach((element) => {
+           el.removeChild(element);
+               });
+
+            }  
+            
+ 
      });
    });
  }
@@ -38,7 +61,7 @@ function pieceRender(data){
     data.forEach(row => {
         row.forEach(square => {
             if(square.piece){            //if square has piece
-             const squareEl =document.getElementById(square.id);
+               const squareEl =document.getElementById(square.id);
              //create piece
              const piece =document.createElement("img");
              piece.src=square.piece.img;
@@ -175,36 +198,39 @@ function selfHighlight(piece){
    document.getElementById(piece.current_Position).classList.add("highlightYellow");  
 }
 
-function clearPreviousSelfHightlight(piece){
-   if(piece){
-   document.getElementById(piece.current_Position).
-   classList.remove("highlightYellow");
-   }
-}
+
 
 //move element to square
 function moveElement(piece,id){
    
-   const flatData=globalstate.flat();
-   flatData.forEach(el=>{
+    const flatData=globalstate.flat();
+   // const to=flatData.find(el=>{
+   //   if(el.id==id)  return el;
+   // })
+   // const from=flatData.find(el=>{
+   //    if(el.id==piece.current_Position)  return el;
+   //  })
+   
+   //    movePieceFromXToY(from,to);
+    flatData.forEach(el=>{
      if(el.id==piece.current_Position){
       delete el.piece;
 
-     }
-     if(el.id==id){
-      el.piece=piece;
-     }
+      }
+      if(el.id==id){
+       el.piece=piece;
+      }
  
-   })
+    })
    clearHighlight();
 
-   const previousPiece=document.getElementById(piece.current_Position);
+    const previousPiece=document.getElementById(piece.current_Position);
    previousPiece.classList.remove("highlightYellow");
-   const currentPiece=document.getElementById(id);
-   currentPiece.innerHTML=previousPiece.innerHTML;
-   previousPiece.innerHTML="";
+    const currentPiece=document.getElementById(id);
+    currentPiece.innerHTML=previousPiece.innerHTML;
+    previousPiece.innerHTML="";
     
-   piece.current_Position=id;
+  
    
    
 }
@@ -213,7 +239,7 @@ export {
    renderHighlight,
    clearHighlight,
    selfHighlight,
-   clearPreviousSelfHightlight,
+  
    moveElement,
    globalStateRender
 };

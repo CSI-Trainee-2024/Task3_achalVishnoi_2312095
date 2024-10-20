@@ -21,17 +21,21 @@ function clearHighlightLocal(){
 }
 
 //*************move piece x to y*****
-function  movePieceFromXToY(from,to){}
+function  movePieceFromXToY(from,to){
+
+}
 
 
 //**********white pown events************ 
 function whitePownClick({piece}){
-   clearHighlightLocal();
+   clearHighlight();
+
+  
   
 //if double clicked to self highlighted state
    if(SelfHighlightedState==piece){
      clearPreviousSelfHightlight(SelfHighlightedState);
-     
+     highlight_state=false;
      SelfHighlightedState=null;
      return;
      
@@ -57,28 +61,26 @@ function whitePownClick({piece}){
        `${current_pos[0]}${Number(current_pos[1])+2}`
         ]
     //clear board for prev highlight
-       
+       highlight_state=false;                                       //if clearing occures than highling false
       
         highLightSquareIds.forEach(highlight => {
             
            globalstate.forEach(row => {
             row.forEach((element)=>{
-               if(element.id==highlight){
-            
-                  element.highlight(true);
-           
-            
-                 }
+               if(element.id==highlight)
+              element.highlight=true;
               });
             }); 
            
             
         });
+
+        globalStateRender();
       }
       else{
         
      //to check if opponent present diagonal or not   
-     const col1=`${String.fromCharCode(current_pos[0].charCodeAt(0)-1)}${Number(current_pos[1])+1}`;
+   const col1=`${String.fromCharCode(current_pos[0].charCodeAt(0)-1)}${Number(current_pos[1])+1}`;
    const col2= `${String.fromCharCode(current_pos[0].charCodeAt(0)+1)}${Number(current_pos[1])+1}`;
   
         
@@ -97,20 +99,8 @@ function whitePownClick({piece}){
             checkPieceOfOpponentOnElement(element,"white")
            });
  
-        //clear highlight section without clearing capture highlight
-                 const flatData=globalstate.flat();
-                flatData.forEach(el=>{
-                 if(el.highlighted){
-          
-                document.getElementById(el.id).innerHTML="";
-                el.highlighted=false;
-               
-             }
-              })
+       
               
-
-              highlight_state=false;
-     
 
          highLightSquareIds.forEach(highlight => {
              
@@ -118,7 +108,7 @@ function whitePownClick({piece}){
              row.forEach((element)=>{
                 if(element.id==highlight){
              
-             element.highlight(true);
+                 element.highlight=true;
              
              
             }
@@ -138,6 +128,8 @@ function whitePownClick({piece}){
              
              
          });
+
+         globalStateRender();
       }
         
 
@@ -152,17 +144,16 @@ function whitePownClick({piece}){
 
  function blackPownClick({piece}){
   
-
+  
    if(highlight_state) {
-      movePieceFromXToY(SelfHighlightedState,piece)
-      return;
+       return;
    }
-   clearHighlightLocal();
+   clearHighlight();
 
    //if double clicked to self highlighted state
       if(SelfHighlightedState==piece){
        clearPreviousSelfHightlight(SelfHighlightedState);
-       
+       highlight_state=false;
        SelfHighlightedState=null;
         return;
         
@@ -187,18 +178,18 @@ function whitePownClick({piece}){
       `${current_pos[0]}${Number(current_pos[1])-1}`,
       `${current_pos[0]}${Number(current_pos[1])-2}`
            ]
-   
-                clearHighlightLocal();
+        highlight_state=false;
+                
            highLightSquareIds.forEach(highlight => {
                
               globalstate.forEach(row => {
                row.forEach((element)=>{
                   if(element.id==highlight){
                
-               element.highlight(true);
+                  element.highlight=true;
                
                
-              }
+                  }
    
                
    
@@ -207,6 +198,9 @@ function whitePownClick({piece}){
                
             
            });
+
+
+           globalStateRender();
          }
          else{
             const highLightSquareIds=
@@ -222,7 +216,7 @@ function whitePownClick({piece}){
                 row.forEach((element)=>{
                    if(element.id==highlight){
                 
-                element.highlight(true);
+                    element.highlight=true;
                 
                 
                }
@@ -235,6 +229,8 @@ function whitePownClick({piece}){
 
                 
             });
+
+            globalStateRender();
          }
            
    

@@ -5,14 +5,18 @@ import { globalstate } from "../index.js";
 //global state reanderer (this function is useful to render piece fromglobal state)
 //most important function
 function globalStateRender() {
-   globalState.forEach((row) => {
+
+   
+   globalstate.forEach((row) => {
      row.forEach((element) => {
        if (element.highlight) {
-         const hightlightSpan = document.createElement("span");
-         hightlightSpan.classList.add("highlight");
-         document.getElementById(element.id).appendChild(hightlightSpan);
+          const highlightSpan=document.createElement("span");
+            highlightSpan.classList.add("highlight");
+             document.getElementById(element.id).appendChild(highlightSpan);
+   
          // } else if (element.highlight === null) {
-       } else {
+       }
+       else {
          const el = document.getElementById(element.id);
          const highlights = Array.from(el.getElementsByTagName("span"));
          highlights.forEach((element) => {
@@ -20,6 +24,7 @@ function globalStateRender() {
          });
          // document.getElementById(element.id).innerHTML = "";
        }
+
      });
    });
  }
@@ -66,22 +71,19 @@ function clearHighlight(){
  const flatData=globalstate.flat();
  flatData.forEach(el=>{
    
-   if(el.captureHighlight){
+   // if(el.captureHighlight){
       
-      document.getElementById(el.id).classList.remove("captureColor");
-      el.captureHighlight=false;
+   //    document.getElementById(el.id).classList.remove("captureColor");
+   //    el.captureHighlight=false;
             
       
-   }
+   // }
    
-   if(el.highlighted){
-
-      document.getElementById(el.id).innerHTML="";
-      el.highlighted=false;
+   if(el.highlight){
+    el.highlight=null;
      
    }
-   
-   
+    globalStateRender();
    
  })
  //console.log(flatData);

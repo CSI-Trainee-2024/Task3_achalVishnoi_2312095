@@ -1,5 +1,7 @@
 const Root_div=document.getElementById("root");
 export{Root_div}
+import { globalstate } from "../index.js";
+
 
 //use when you want to render pieces when game start
 function pieceRender(data){
@@ -28,12 +30,27 @@ function renderHighlight(squareId){
    const highlightSpan=document.createElement("span");
    highlightSpan.classList.add("hilight");
    document.getElementById(squareId).appendChild(highlightSpan);
+   
 
+}
+
+function clearHighlight(){
+ const flatData=globalstate.flat();
+ flatData.forEach(el=>{
+   if(el.highlighted){
+      document.getElementById(el.id).innerHTML="";
+   }
+   
+   
+ })
+ console.log(flatData);
+ 
 }
 
 //=========importing black,white pawn=============
 
 import *as pieces from "../Data/pices.js";
+ 
 
 /*=================render init (use when board render for first time)***************/
 
@@ -108,7 +125,7 @@ rowE1.appendChild(squareDiv);
   });
    pieceRender(data);
 }
-export {initGameRender,renderHighlight};
+export {initGameRender,renderHighlight,clearHighlight};
 
 
 

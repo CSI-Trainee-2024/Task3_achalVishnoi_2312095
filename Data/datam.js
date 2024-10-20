@@ -1,10 +1,19 @@
 export function add(){
     alert("hello")
 }
+
+import { renderHighlight } from "../render/main.js";
 //for each square
 
 function Square(color,id,piece){
-    return{ color,id,piece };
+
+    const highlight=function (){
+       renderHighlight(this.id);
+       this.highlighted=true;
+        
+    }
+   
+    return{ color,id,piece,highlight };
 }
 
 //***********************for distributing ids and color*************************//

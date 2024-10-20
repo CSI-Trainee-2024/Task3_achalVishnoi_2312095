@@ -12,15 +12,14 @@ background-color: #302e2b;
     
 
     display: flex;
-
-    
+   
 }
 .black{
-   background: url(ChessAssets/darkwooden.png); 
+   background: url(Assets/darkwooden.png); 
    
 }
 .white{
-    background: url(ChessAssets/lightwooden.png);
+    background: url(Assets/lightwooden.png);
 }
 .square{
     width: 75px;

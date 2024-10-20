@@ -157,13 +157,14 @@ function moveElement(piece,id){
      }
  
    })
+   clearHighlight();
 
    const previousPiece=document.getElementById(piece.current_Position);
    previousPiece.classList.remove("highlightYellow");
    const currentPiece=document.getElementById(id);
    currentPiece.innerHTML=previousPiece.innerHTML;
    previousPiece.innerHTML="";
-
+    
    piece.current_Position=id;
    
    

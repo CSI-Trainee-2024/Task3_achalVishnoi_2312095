@@ -14,7 +14,15 @@ let SelfHighlightedState=null;
 //move State
 let moveState=null;
 
- function whitePownClick({piece}){
+function whitePownClick({piece}){
+
+
+   if(SelfHighlightedState==piece){
+     clearPreviousSelfHightlight(piece);
+     clearHighlight();
+     SelfHighlightedState=null;
+     return;
+   }
 
    //console.log(moveState);
    
@@ -49,7 +57,7 @@ let moveState=null;
             
            }
 
-
+            
 
              });
             }); 
@@ -63,16 +71,18 @@ let moveState=null;
             
             
         });
+      }
         
 
-    }
+    
 
     
 
     
  }
-
-
+  
+  
+  
 function GlobalEvent(){
     Root_div.addEventListener("click",function(event){
         if(event.target.localName==="img"){
@@ -93,14 +103,14 @@ function GlobalEvent(){
             
              const id=event.target.parentNode.id;
 
-             clearHighlight();          //very importent              
+                                    
 
              moveElement(moveState,id);
              
              moveState=null;
            }
            else{
-            clearHighlight();
+            
             const id=event.target.id;
              moveElement(moveState,id);
              

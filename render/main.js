@@ -137,11 +137,43 @@ function selfHighlight(piece){
 }
 
 function clearPreviousSelfHightlight(piece){
-   if(piece!=null){
-   document.getElementById(piece.current_Position).classList.remove("highlightYellow");
+   if(piece){
+   document.getElementById(piece.current_Position).
+   classList.remove("highlightYellow");
    }
 }
-export {initGameRender,renderHighlight,clearHighlight,selfHighlight,clearPreviousSelfHightlight};
+
+//move element to square
+function moveElement(piece,id){
+   
+   const flatData=globalstate.flat();
+   flatData.forEach(el=>{
+     if(el.id==piece.current_Position){
+      delete el.piece;
+
+     }
+     if(el.id==id){
+      el.piece=piece;
+     }
+ 
+   })
+
+   const previousPiece=document.getElementById(piece.current_Position);
+   const currentPiece=document.getElementById(id);
+   currentPiece.innerHTML=previousPiece.innerHTML;
+   previousPiece.innerHTML="";
+   piece.current_Position=id;
+   
+   
+}
+export {
+   initGameRender,
+   renderHighlight,
+   clearHighlight,
+   selfHighlight,
+   clearPreviousSelfHightlight,
+   moveElement
+};
 
 
 

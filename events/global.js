@@ -4,17 +4,25 @@ import { renderHighlight } from "../render/main.js";
 import { clearHighlight } from "../render/main.js";
 import { selfHighlight } from "../render/main.js";
 import { clearPreviousSelfHightlight } from "../render/main.js";
+import { moveElement } from "../render/main.js";
 
 //highleted or not
 let highlight_state=false;
 
 //current self hightlight square state
 let SelfHighlightedState=null;
+//move State
+let moveState=null;
 
  function whitePownClick({piece}){
+
+   //console.log(moveState);
+   
    clearPreviousSelfHightlight(SelfHighlightedState);
    selfHighlight(piece);
    SelfHighlightedState=piece;
+   //add piece as move state
+   moveState=piece;
 
    //highlight clicked element 
    const current_pos=piece.current_Position;
@@ -80,7 +88,13 @@ function GlobalEvent(){
         else{
          const childElementOfClockedEl=Array.from(event.target.childNodes);
          if(childElementOfClockedEl.length==1||event.target.localName=="span"){
-            console.log("clicked on highlighted span");
+           if(event.target.localName=="span"){
+             const id=event.target.parentNode.id;
+             moveElement(moveState,id);
+           }
+           else{
+
+           }
             
          }
          else {

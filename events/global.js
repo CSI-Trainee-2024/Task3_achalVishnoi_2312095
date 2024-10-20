@@ -1,25 +1,48 @@
-import { Root_div } from "../render/main.js";
-
-import { renderHighlight } from "../render/main.js";
-import { clearHighlight } from "../render/main.js";
-import { selfHighlight } from "../render/main.js";
-//import { clearPreviousSelfHightlight } from "../render/main.js";
-import { globalstate, keySquareMapper } from "../index.js";
-//import { moveElement } from "../render/main.js";
-import { checkPieceOfOpponentOnElement } from "../Helper/commonHelper.js";
-import { globalStateRender } from "../render/main.js";
-//highleted or not
-let highlight_state=false;       //jab whight self highlighted than for black this state true
+import {
+   giveBishopHighlightIds,
+   giveRookCapturesIds,
+ } from "../Helper/commonHelper.js";
+ import { checkSquareCaptureId } from "../Helper/commonHelper.js";
+ import { checkPieceOfOpponentOnElement } from "../Helper/commonHelper.js";
+ import { giveKingCaptureIds } from "../Helper/commonHelper.js";
+ import { giveQueenCapturesIds } from "../Helper/commonHelper.js";
+ import { checkWeatherPieceExistsOrNot } from "../Helper/commonHelper.js";
+ import {
+   giveRookHighlightIds,
+   giveBishopCaptureIds,
+ } from "../Helper/commonHelper.js";
+ import { giveKnightCaptureIds } from "../Helper/commonHelper.js";
+ import {
+   giveKingHighlightIds,
+   giveKnightHighlightIds,
+ } from "../Helper/commonHelper.js";
+ import { giveQueenHighlightIds } from "../Helper/commonHelper.js";
+ import { ROOT_DIV } from "../Helper/constants.js";
+ import { clearHighlight } from "../render/main.js";
+ import { selfHighlight } from "../render/main.js";
+ import { globalStateRender } from "../render/main.js";
+ import { globalState, keySquareMapper } from "../index.js";
+ import { globalPiece } from "../render/main.js";
+ 
+ let hightlight_state = false;     //jab whight self highlighted than for black this state true
 
 //current self hightlight square state
-let SelfHighlightedState=null;
+let selfHighlightState=null;
 //move State
 let moveState=null;
  //local function that will clear with highlight state
 function clearHighlightLocal(){
    clearHighlight();
-   highlight_state=false;
+   hightlight_state=false;
 }
+//to change turns
+let inTurn = "white";
+let whoInCheck = null;
+
+function changeTurn() {
+  inTurn = inTurn === "white" ? "black" : "white";
+}
+
 
 //*************move piece x to y*****
 function  movePieceFromXToY(from,to){
@@ -37,10 +60,96 @@ function clearPreviousSelfHightlight(piece){
         .classList.remove("highlightYellow");
       // console.log(piece);
       // selfHighlight = false;
-      SelfHighlightedState= null;
+      selfHighlightState= null;
 }
 
 }
+
+
+   //capturing
+
+   function captureInTurn(square) {
+      const piece = square.piece;
+    
+      if (piece == selfHighlightState) {
+        clearPreviousSelfHightlight(selfHighlightState);
+        clearHighlightLocal();
+        return;
+      }
+    
+      if (square.captureHighlight) {
+        // movePieceFromXToY();
+        moveElement(selfHighlightState, piece.current_position);
+        clearPreviousSelfHightlight(selfHighlightState);
+        clearHighlightLocal();
+        return;
+      }
+    
+      return;
+    }
+
+
+    // movement
+    function moveElement(piece, id, castle) {
+      const pawnIsPromoted = checkForPawnPromotion(piece, id);
+    
+      if (piece.piece_name.includes("KING") || piece.piece_name.includes("ROOK")) {
+        piece.move = true;
+    
+        if (
+          piece.piece_name.includes("KING") &&
+          piece.piece_name.includes("BLACK")
+        ) {
+          if (id === "c8" || id === "g8") {
+            let rook = keySquareMapper[id === "c8" ? "a8" : "h8"];
+            moveElement(rook.piece, id === "c8" ? "d8" : "f8", true);
+          }
+        }
+    
+        if (
+          piece.piece_name.includes("KING") &&
+          piece.piece_name.includes("WHITE")
+        ) {
+          if (id === "c1" || id === "g1") {
+            let rook = keySquareMapper[id === "c1" ? "a1" : "h1"];
+            moveElement(rook.piece, id === "c1" ? "d1" : "f1", true);
+          }
+        }
+      }
+    
+      const flatData = globalState.flat();
+      flatData.forEach((el) => {
+        if (el.id == piece.current_position) {
+          delete el.piece;
+        }
+        if (el.id == id) {
+          if (el.piece) {
+            el.piece.current_position = null;
+          }
+          el.piece = piece;
+        }
+      });
+      clearHighlight();
+      const previousPiece = document.getElementById(piece.current_position);
+      piece.current_position = null;
+      previousPiece?.classList?.remove("highlightYellow");
+      const currentPiece = document.getElementById(id);
+      currentPiece.innerHTML = previousPiece?.innerHTML;
+      if (previousPiece) previousPiece.innerHTML = "";
+      piece.current_position = id;
+      if (pawnIsPromoted) {
+        pawnPromotion(inTurn, callbackPawnPromotion, id);
+      }
+      checkForCheck();
+      // if(whoInCheck)
+      // {
+      // }
+      // new HypotheticalBoard(globalState);
+      if (!castle) {
+        changeTurn();
+      }
+      // globalStateRender();
+    }
 //**********white pown events************ 
 /*function whitePownClick({piece}){
    clearHighlight();
@@ -232,7 +341,12 @@ function changeTurn() {
        
          globalStateRender();
        }
-       
+
+
+
+
+    
+    
  
  //****************blackPown move***********
 
@@ -355,7 +469,7 @@ function changeTurn() {
   
   
 function GlobalEvent(){
-    Root_div.addEventListener("click",function(event){
+    ROOT_DIV.addEventListener("click",function(event){
         if(event.target.localName==="img"){
             const clickId=event.target.parentNode.id;
             

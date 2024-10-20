@@ -1,7 +1,7 @@
-const Root_div=document.getElementById("root");
-export{Root_div}
-import { globalstate } from "../index.js";
+import { ROOT_DIV } from "../Helper/constants.js";
+import { globalState } from "../index.js";
 import { movePieceFromXToY } from "../events/global.js";
+const globalPiece = new Object();
 
 
 //global state reanderer (this function is useful to render piece fromglobal state)
@@ -257,7 +257,7 @@ export {
    clearHighlight,
    selfHighlight,
   
-   
+   globalPiece,
    globalStateRender
 };
 

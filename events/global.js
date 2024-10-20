@@ -16,7 +16,7 @@ let SelfHighlightedState=null;
 let moveState=null;
 //**********white pown events************ 
 function whitePownClick({piece}){
-
+   
 //if double clicked to self highlighted state
    if(SelfHighlightedState==piece){
      clearPreviousSelfHightlight(SelfHighlightedState);
@@ -46,7 +46,7 @@ function whitePownClick({piece}){
         ]
 
 
-
+    //clear board for any prev highlight
         clearHighlight();
         highLightSquareIds.forEach(highlight => {
             
@@ -54,32 +54,32 @@ function whitePownClick({piece}){
             row.forEach((element)=>{
                if(element.id==highlight){
             
-            element.highlight(true);
+                  element.highlight(true);
+           
             
-            
-           }
-
-            
-
-             });
+                 }
+              });
             }); 
+           
             
         });
       }
       else{
         
-     //to check if opponent present diagonal or not    
-         const col1=`${String.fromCharCode(current_pos[0].charCodeAt(0)-1)}${Number(current_pos[1])+1}`;
-         const col2= `${String.fromCharCode(current_pos[0].charCodeAt(0)+1)}${Number(current_pos[1])+1}`;
-          
-      console.log(checkPieceOfOpponentOnElement(col1,"white"));
-      console.log( checkPieceOfOpponentOnElement(col2,"white"));
+     //to check if opponent present diagonal or not   
+     const col1=`${String.fromCharCode(current_pos[0].charCodeAt(0)-1)}${Number(current_pos[1])+1}`;
+   const col2= `${String.fromCharCode(current_pos[0].charCodeAt(0)+1)}${Number(current_pos[1])+1}`;
+ const  captureIds=[col1,col2]; 
         
-       
+         captureIds.forEach(element => {
+            checkPieceOfOpponentOnElement(element,"white")
+           });
+
+  
 
          const highLightSquareIds=
          [
-    `${current_pos[0]}${Number(current_pos[1])+1}`,
+          `${current_pos[0]}${Number(current_pos[1])+1}`,
          ]
  
          clearHighlight();
@@ -94,6 +94,7 @@ function whitePownClick({piece}){
              
             }
  
+            
              
  
               });
@@ -168,14 +169,7 @@ function whitePownClick({piece}){
                 });
                }); 
                
-               // if(highlight_state)  clearHighlight(); 
-               //     renderHighlight(highlight);
-               // highlight_state=true;  
-   
-            //   const el=flatArray.find((element)=>element.id===highlight);
-           //    console.log(el);
-               
-               
+            
            });
          }
          else{
@@ -254,10 +248,7 @@ function GlobalEvent(){
               moveState=null;
 
              }
-           clearHighlight(); //in elese part clear highlight called to clear highlight if any if we clicking any part
-           clearPreviousSelfHightlight(SelfHighlightedState);
-           SelfHighlightedState=null;
-            
+
          }
          else {
             clearHighlight(); //in elese part clear highlight called to clear highlight if any if we clicking any part

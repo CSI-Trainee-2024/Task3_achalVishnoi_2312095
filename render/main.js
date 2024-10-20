@@ -31,20 +31,35 @@ function pieceRender(data){
 
 
 function renderHighlight(squareId){
+
    const highlightSpan=document.createElement("span");
-   highlightSpan.classList.add("hilight");
+   highlightSpan.classList.add("highlight");
    document.getElementById(squareId).appendChild(highlightSpan);
    
 
 }
 
 function clearHighlight(){
+  
+
  const flatData=globalstate.flat();
  flatData.forEach(el=>{
+   
+   if(el.captureHighlight){
+      console.log(el)
+      document.getElementById(el.id).classList.remove("captureColor");
+      el.captureHighlight=false;
+            
+      
+   }
+   
    if(el.highlighted){
+
       document.getElementById(el.id).innerHTML="";
       el.highlighted=false;
+     
    }
+   
    
    
  })
@@ -133,6 +148,7 @@ rowE1.appendChild(squareDiv);
 
 //-----------------self highlight ---------------//
 function selfHighlight(piece){
+
    document.getElementById(piece.current_Position).classList.add("highlightYellow");  
 }
 

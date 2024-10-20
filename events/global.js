@@ -5,6 +5,7 @@ import { clearHighlight } from "../render/main.js";
 import { selfHighlight } from "../render/main.js";
 import { clearPreviousSelfHightlight } from "../render/main.js";
 import { moveElement } from "../render/main.js";
+import { checkPieceOfOpponentOnElement } from "../Helper/commonHelper.js";
 
 //highleted or not
 let highlight_state=false;
@@ -34,7 +35,7 @@ function whitePownClick({piece}){
    //highlight clicked element 
    const current_pos=piece.current_Position;
    
-    
+
     const flatArray=globalstate.flat();
     if(current_pos[1]=="2"){
 
@@ -43,6 +44,8 @@ function whitePownClick({piece}){
    `${current_pos[0]}${Number(current_pos[1])+1}`,
    `${current_pos[0]}${Number(current_pos[1])+2}`
         ]
+
+
 
         clearHighlight();
         highLightSquareIds.forEach(highlight => {
@@ -61,17 +64,19 @@ function whitePownClick({piece}){
              });
             }); 
             
-            // if(highlight_state)  clearHighlight(); 
-            //     renderHighlight(highlight);
-            // highlight_state=true;  
-
-         //   const el=flatArray.find((element)=>element.id===highlight);
-        //    console.log(el);
-            
-            
         });
       }
       else{
+        
+     //to check if opponent present diagonal or not    
+         const col1=`${String.fromCharCode(current_pos[0].charCodeAt(0)-1)}${Number(current_pos[1])+1}`;
+         const col2= `${String.fromCharCode(current_pos[0].charCodeAt(0)+1)}${Number(current_pos[1])+1}`;
+          
+      console.log(checkPieceOfOpponentOnElement(col1,"white"));
+      console.log( checkPieceOfOpponentOnElement(col2,"white"));
+        
+       
+
          const highLightSquareIds=
          [
     `${current_pos[0]}${Number(current_pos[1])+1}`,

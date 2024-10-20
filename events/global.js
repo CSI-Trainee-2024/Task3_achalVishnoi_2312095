@@ -83,10 +83,10 @@ function GlobalEvent(){
             console.log("clicked on highlighted span");
             
          }
-         else{
+         else {
             clearHighlight();
-            
          }
+         
          
 
         }

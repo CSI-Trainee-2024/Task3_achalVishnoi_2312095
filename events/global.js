@@ -84,7 +84,8 @@ function GlobalEvent(){
             
          }
          else {
-            clearHighlight();
+            clearHighlight(); //in elese part clear highlight called to clear highlight if any if we clicking any part
+            clearPreviousSelfHightlight(SelfHighlightedState);
          }
          
          

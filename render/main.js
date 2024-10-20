@@ -2,6 +2,27 @@ const Root_div=document.getElementById("root");
 export{Root_div}
 import { globalstate } from "../index.js";
 
+//global state reanderer (this function is useful to render piece fromglobal state)
+//most important function
+function globalStateRender() {
+   globalState.forEach((row) => {
+     row.forEach((element) => {
+       if (element.highlight) {
+         const hightlightSpan = document.createElement("span");
+         hightlightSpan.classList.add("highlight");
+         document.getElementById(element.id).appendChild(hightlightSpan);
+         // } else if (element.highlight === null) {
+       } else {
+         const el = document.getElementById(element.id);
+         const highlights = Array.from(el.getElementsByTagName("span"));
+         highlights.forEach((element) => {
+           el.removeChild(element);
+         });
+         // document.getElementById(element.id).innerHTML = "";
+       }
+     });
+   });
+ }
 
 
 
@@ -46,7 +67,7 @@ function clearHighlight(){
  flatData.forEach(el=>{
    
    if(el.captureHighlight){
-      console.log(el)
+      
       document.getElementById(el.id).classList.remove("captureColor");
       el.captureHighlight=false;
             
@@ -191,7 +212,8 @@ export {
    clearHighlight,
    selfHighlight,
    clearPreviousSelfHightlight,
-   moveElement
+   moveElement,
+   globalStateRender
 };
 
 

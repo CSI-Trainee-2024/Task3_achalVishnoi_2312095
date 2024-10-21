@@ -259,6 +259,7 @@ function checkForCheck() {
       }
       // globalStateRender();
     }
+
 //**********white pown events************ 
 /*function whitePownClick({piece}){
    clearHighlight();
@@ -802,7 +803,7 @@ function changeTurn() {
             }
           
             if (square.captureHighlight) {
-              // movePieceFromXToY();
+             
               moveElement(selfHighlightState, piece.current_position);
               clearPreviousSelfHighlight(selfHighlightState);
               clearHighlightLocal();
@@ -872,18 +873,18 @@ function changeTurn() {
               }
             }
           
-            // let captureIds = [col1, col2];
+            //                       let captureIds = [col1, col2];
             // console.log(captureIds);
-            // // captureIds = checkSquareCaptureId(captureIds);
+            // // captureIds    =      checkSquareCaptureId(captureIds);
           
-            // captureIds.forEach((element) => {
+  //     captureIds.forEach((element) => {
             //   checkPieceOfOpponentOnElement(element, "white");
             // });
           
             globalStateRender();
           }
           
-          // handle knight click
+          //   handle knight click
           function whiteKnightClick(square) {
             const piece = square.piece;
           
@@ -894,18 +895,18 @@ function changeTurn() {
             }
           
             if (square.captureHighlight) {
-              // movePieceFromXToY();
+              //   movePieceFromXToY();
               moveElement(selfHighlightState, piece.current_position);
               clearPreviousSelfHighlight(selfHighlightState);
               clearHighlightLocal();
               return;
             }
           
-            // clear all highlights
+            //   clear all highlights
             clearPreviousSelfHighlight(selfHighlightState);
             clearHighlightLocal();
           
-            // highlighting logic
+            //    highlighting logic
             selfHighlight(piece);
             hightlight_state = true;
             selfHighlightState = piece;

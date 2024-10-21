@@ -99,7 +99,8 @@ function checkForCheck() {
      if (checkOrNot) {
        whoInCheck = "white";
      }
-   } else {
+   } 
+   else {
      const blackKingCurrentPosition = globalPiece.black_king.current_position;
      const knight_1 = globalPiece.white_knight_1.current_position;
      const knight_2 = globalPiece.white_knight_2.current_position;
@@ -154,6 +155,21 @@ function checkForCheck() {
      }
    }
  }
+
+ function callbackPawnPromotion(piece, id) {
+   const realPiece = piece(id);
+   const currentSquare = keySquareMapper[id];
+   piece.current_position = id;
+   currentSquare.piece = realPiece;
+   const image = document.createElement("img");
+   image.src = realPiece.img;
+   image.classList.add("piece");
+ 
+   const currentElement = document.getElementById(id);
+   currentElement.innerHTML = "";
+   currentElement.append(image);
+ }
+ 
 
    //capturing
 
@@ -1676,6 +1692,7 @@ function changeTurn() {
                     moveElement(moveState, id);
                     moveState = null;
                   }
+
                 } else {
                   // clear highlights
                   clearHighlightLocal();

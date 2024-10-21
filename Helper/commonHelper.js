@@ -168,7 +168,7 @@ function giveBishopCaptureIds(id, color){
       }
 
       if (checkPieceOfOpponentOnElementNoDom(element, color)) {
-        returnArr.push(element)
+        returnArr.push(element);
         break;
       }
     }
@@ -204,16 +204,16 @@ function giveRookCapturesIds(id,color){
     for (let j = 0; j < arr.length; j++) {
       const element = arr[j];
 
-      let checkPieceResult = checkWeatherPieceExistsOrNot(element);
-      if (
+       let checkPieceResult = checkWeatherPieceExistsOrNot(element);
+       if (
         checkPieceResult &&
         checkPieceResult.piece &&
         checkPieceResult.piece.piece_name.toLowerCase().includes(color)
-      ) {
+       ) {
         break;
-      }
+       }
 
-      if (checkPieceOfOpponentOnElementNoDom(element, color)) {
+       if (checkPieceOfOpponentOnElementNoDom(element, color)) {
         returnArr.push(element)
         break;
       }

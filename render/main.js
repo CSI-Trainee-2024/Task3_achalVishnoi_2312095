@@ -213,7 +213,7 @@ function initGameRender(data) {
 function selfHighlight(piece){
 
    document.getElementById(piece.current_position)
-                             .classList.add("highlightYellow");  
+      .classList.add("highlightYellow");  
 }
 
 

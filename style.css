@@ -1,16 +1,16 @@
 body{
-background-color: #302e2b;
-width: 100vw;
-height: 100vh;
-        display: flex;
+background-color: #1e343c;
+
+        
    
-    align-items: center;
-    justify-content: center;
+    
 }
 #root{
 
     width: fit-content;
     margin: auto;
+    margin-top: 70px;
+    border: #e67e33 solid 15px;
     display: flex;
     flex-direction: column;
    

@@ -37,7 +37,7 @@ import {
   function pawnPromotion(color, callback, id) {
     const rook = document.createElement("img");
     rook.onclick = rookCallback;
-    rook.src = `../Assets/images/pieces/${color}/rook.`;
+    rook.src = `../Assets/images/pieces/${color}/rook.png`;
   
     const knight = document.createElement("img");
     knight.onclick = knightCallback;

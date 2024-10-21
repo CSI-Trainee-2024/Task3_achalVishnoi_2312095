@@ -9,7 +9,7 @@ const globalPiece = new Object();
 function globalStateRender() {
 
    
-   globalstate.forEach((row) => {
+   globalState.forEach((row) => {
      row.forEach((element) => {
          
       if (element.highlight) {
@@ -69,7 +69,7 @@ function renderHighlight(squareId){
 function clearHighlight(){
   
 
- const flatData=globalstate.flat();
+ const flatData=globalState.flat();
  flatData.forEach(el=>{
    
     if(el.captureHighlight){
@@ -212,7 +212,8 @@ function initGameRender(data) {
 //-----------------self highlight ---------------//
 function selfHighlight(piece){
 
-   document.getElementById(piece.current_Position).classList.add("highlightYellow");  
+   document.getElementById(piece.current_position)
+                             .classList.add("highlightYellow");  
 }
 
 
@@ -220,7 +221,7 @@ function selfHighlight(piece){
 //move element to square
 /*function moveElement(piece,id){
    
-    const flatData=globalstate.flat();
+    const flatData=globalState.flat();
    // const to=flatData.find(el=>{
    //   if(el.id==id)  return el;
    // })

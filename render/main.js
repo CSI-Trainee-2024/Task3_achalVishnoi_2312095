@@ -142,12 +142,12 @@ function initGameRender(data) {
            globalPiece.black_bishop_1 = square.piece
          }
        }
-       // render black knight
+       // render black queen
        if (square.id == "d8") {
          square.piece = piece.blackQueen(square.id);
          globalPiece.black_queen = square.piece
        }
-       // render black knight
+       // render black king
        if (square.id == "e8") {
          square.piece = piece.blackKing(square.id);
          globalPiece.black_king = square.piece;

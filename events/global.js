@@ -24,8 +24,8 @@ import {
  import { globalState, keySquareMapper } from "../index.js";
  import { globalPiece } from "../render/main.js";
  import pawnPromotion from "../Helper/modalCreator.js";
-import HypotheticalClass from "../Others/HypotheticalBoard.js";
-import HypotheticalBoard from "../Others/HypotheticalBoard.js";
+//import HypotheticalClass from "../Others/HypotheticalBoard.js";
+//import HypotheticalBoard from "../Others/HypotheticalBoard.js";
 
  let hightlight_state = false;     //jab whight self highlighted than for black this state true
 
@@ -70,6 +70,8 @@ function clearPreviousSelfHightlight(piece){
 
 
 function checkForCheck() {
+
+  
    if (inTurn === "black") {
      const whiteKingCurrentPosition = globalPiece.white_king.current_position;
      const knight_1 = globalPiece.black_knight_1.current_position;
